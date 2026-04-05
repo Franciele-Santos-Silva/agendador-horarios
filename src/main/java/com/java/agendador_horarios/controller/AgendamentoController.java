@@ -4,9 +4,10 @@ import com.java.agendador_horarios.infrastructure.entity.Agendamento;
 import com.java.agendador_horarios.services.AgendamentoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,4 +20,20 @@ public class AgendamentoController {
         return ResponseEntity.accepted().body(agendamentoService.salvarAgendamento(agendamento));
     }
 
+    @DeleteMapping
+    public ResponseEntity<Void> deletarAgendamento(@RequestParam String cliente, @RequestParam LocalDateTime dataHoraAgendamento){
+
+        agendamentoService.deletarAgendamento(cliente, dataHoraAgendamento);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<Agendamento> buscarAGendamentoDia(@RequestParam LocalDate data){
+        return ResponseEntity.ok().body(agendamentoService.buscarAgendamentosDia(data));
+    }
+
+    @PutMapping
+    public ResponseEntity<Agendamento> alterarAgendamento(@RequestBody Agendamento agendamento,@RequestParam String cliente, @RequestParam LocalDateTime dataHoraAgendamento){
+        return ResponseEntity.accepted().body(agendamentoService.alterarAgendamento(agendamento, cliente, dataHoraAgendamento));
+    }
 }
