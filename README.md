@@ -2,8 +2,6 @@
 
 Um projeto em **Java com Spring Boot** para criar e gerenciar compromissos de forma simples. O sistema utiliza **Spring Data JPA**, **H2 Database** e **Lombok**, permitindo criar, alterar, listar e deletar agendamentos facilmente.
 
----
-
 ## Tecnologias Utilizadas
 
 - **Java 17+**
@@ -12,8 +10,6 @@ Um projeto em **Java com Spring Boot** para criar e gerenciar compromissos de fo
 - **H2 Database** (banco de dados em memória)
 - **Lombok** (reduz boilerplate code)
 - **Maven** (gerenciamento de dependências)
-
----
 
 ## Funcionalidades
 
