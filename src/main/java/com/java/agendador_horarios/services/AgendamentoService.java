@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -32,10 +33,10 @@ public class AgendamentoService {
 
     public void deletarAgendamento(String cliente, LocalDateTime dataHoraAgendamento) {
 
-        agendamentoRepository.deleteByDataHoraAgendamentoCliente(dataHoraAgendamento, cliente);
+        agendamentoRepository.deleteByDataHoraAgendamentoAndCliente(dataHoraAgendamento, cliente);
     }
 
-    public Agendamento buscarAgendamentosDia(LocalDate data){
+    public List<Agendamento> buscarAgendamentosDia(LocalDate data){
         LocalDateTime primeiraHoraDia = data.atStartOfDay();
         LocalDateTime horaFinalDia = data.atTime(23,59, 59);
 
@@ -43,7 +44,7 @@ public class AgendamentoService {
     }
 
     public Agendamento alterarAgendamento(Agendamento agendamento, String cliente, LocalDateTime dataHoraAgendamento) {
-       Agendamento agenda = agendamentoRepository.findByDataHoraAgendamentoCliente(dataHoraAgendamento, cliente);
+       Agendamento agenda = agendamentoRepository.findByDataHoraAgendamentoAndCliente(dataHoraAgendamento, cliente);
 
         if(Objects.isNull(agenda)) {
            throw new RuntimeException("Horário não está preenchido");
