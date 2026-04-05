@@ -1,21 +1,19 @@
 package com.java.agendador_horarios.infrastructure.repository;
 
 import com.java.agendador_horarios.infrastructure.entity.Agendamento;
-import jakarta.transaction.TransactionScoped;
 import jakarta.transaction.Transactional;
-import org.springframework.cglib.core.Local;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> {
     Agendamento findByServicoAndDataHoraAgendamentoBetween(String servico, LocalDateTime dataHora, LocalDateTime dataFinal);
 
-
     @Transactional
-    void deleteByDataHoraAgendamentoCliente(LocalDateTime dataHoraAgendamentocl, String cliente);
+    void deleteByDataHoraAgendamentoAndCliente(LocalDateTime dataHoraAgendamento, String cliente);
 
-    Agendamento findByDataHoraAgendamentoBetween(LocalDateTime dataHoraInicial, LocalDateTime dataHoraFinal);
+    List<Agendamento> findByDataHoraAgendamentoBetween(LocalDateTime dataHoraInicial, LocalDateTime dataHoraFinal);
 
-    Agendamento findByDataHoraAgendamentoCliente(LocalDateTime dataHoraAgendamentocl, String cliente);
+    Agendamento findByDataHoraAgendamentoAndCliente(LocalDateTime dataHoraAgendamento, String cliente);
 }
