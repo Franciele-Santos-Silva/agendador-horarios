@@ -24,7 +24,7 @@ public class AgendamentoService {
         Agendamento agendados = agendamentoRepository.findByServicoAndDataHoraAgendamentoBetween(agendamento.getServico(), horaAgendamento, horaFim);
 
 
-        if(Objects.nonNull(agendados)) {
+        if(Objects.isNull(agendados)) {
             agendamentoRepository.save(agendamento);
         }
         return  agendamentoRepository.save(agendados);
